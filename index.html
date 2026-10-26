@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="it" class="h-full bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roma e il suo impero - L'Enigma del Principato</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter & Cinzel per stile storiografico/romano -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        roman: {
+                            gold: '#D4AF37',
+                            pastelGold: '#F5E5C0',
+                            red: '#8B1E1E',
+                            pompeii: '#9E2A2B',
+                            crimson: '#B83234',
+                            pastelRed: '#F5B0B0',
+                            terracotta: '#D97757',
+                            pastelTerracotta: '#F7D6C8',
+                            porphyry: '#4A122E',
+                            cream: '#FAF4EE',
+                            bgDark: '#14090B',
+                            cardDark: '#231215',
+                            cardBorder: '#4E2024'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #231215;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #62282d;
+            border-radius: 4px;
+        }
+        .gold-border {
+            border: 2px solid #D4AF37;
+        }
+        .gold-text-glow {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased select-none bg-[#14090B] text-stone-100">
+
+    <!-- BARRA DI NAVIGAZIONE SUPERIORE -->
+    <header class="bg-[#221013] border-b border-amber-600/40 sticky top-0 z-50 shadow-xl shadow-red-950/30">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl" aria-hidden="true">🏛️</span>
+                <div>
+                    <h1 class="font-serif font-bold text-lg md:text-xl text-amber-300 tracking-wide">ROMA E IL SUO IMPERO</h1>
+                    <p class="text-xs text-rose-200/70 font-medium">UDA 1 - Storia 2° Anno AFM</p>
+                </div>
+            </div>
+            
+            <!-- Pulsanti Navigazione tra Modalità -->
+            <nav class="flex items-center space-x-2" aria-label="Navigazione principale">
+                <button id="btn-mode-scopri" onclick="switchSection('scopri')" class="px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition-all bg-amber-500/20 text-amber-200 border border-amber-500/50 hover:bg-amber-500/30 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                    <span aria-hidden="true">📚</span>
+                    <span>Scopri (Schede)</span>
+                </button>
+                <button id="btn-mode-sfida" onclick="switchSection('sfida')" class="px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition-all bg-[#34181c] text-rose-200 border border-rose-900/60 hover:bg-[#441f25] focus:outline-none focus:ring-2 focus:ring-amber-400">
+                    <span aria-hidden="true">⚔️</span>
+                    <span>Sfida (Escape Room)</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENITORE PRINCIPALE DELL'APP -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-6 overflow-y-auto custom-scrollbar">
+
+        <!-- ========================================== -->
+        <!-- SEZIONE 1: SCOPRI (SCHEDE DIDATTICHE) -->
+        <!-- ========================================== -->
+        <section id="section-scopri" class="space-y-6">
+            <div class="bg-[#231215] border border-amber-500/40 rounded-xl p-5 md:p-6 shadow-xl shadow-red-950/20">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-3xl" aria-hidden="true">📜</span>
+                    <div>
+                        <h2 class="font-serif text-xl md:text-2xl font-bold text-amber-300">Archivio Storico dell'Impero</h2>
+                        <p class="text-sm text-rose-100/80">Consulta queste 5 schede concettuali prima o durante la Sfida per analizzare cause, conseguenze e date fondamentali.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab delle Schede -->
+            <div class="flex overflow-x-auto gap-2 pb-2 custom-scrollbar" role="tablist" aria-label="Schede di studio">
+                <button id="tab-btn-1" onclick="selectCard(1)" class="card-tab-btn flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-bold bg-gradient-to-r from-red-800 to-rose-700 text-amber-100 border border-amber-400/40 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-amber-400">1. Augusto & Principato</button>
+                <button id="tab-btn-2" onclick="selectCard(2)" class="card-tab-btn flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-semibold bg-[#2d161a] text-rose-200/90 hover:bg-[#3d1e23] transition-all border border-rose-900/50 focus:outline-none focus:ring-2 focus:ring-amber-400">2. Riforme & Burocrazia</button>
+                <button id="tab-btn-3" onclick="selectCard(3)" class="card-tab-btn flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-semibold bg-[#2d161a] text-rose-200/90 hover:bg-[#3d1e23] transition-all border border-rose-900/50 focus:outline-none focus:ring-2 focus:ring-amber-400">3. Politica Estera</button>
+                <button id="tab-btn-4" onclick="selectCard(4)" class="card-tab-btn flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-semibold bg-[#2d161a] text-rose-200/90 hover:bg-[#3d1e23] transition-all border border-rose-900/50 focus:outline-none focus:ring-2 focus:ring-amber-400">4. Giulio-Claudii</button>
+                <button id="tab-btn-5" onclick="selectCard(5)" class="card-tab-btn flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-semibold bg-[#2d161a] text-rose-200/90 hover:bg-[#3d1e23] transition-all border border-rose-900/50 focus:outline-none focus:ring-2 focus:ring-amber-400">5. Dinastia Flavia</button>
+            </div>
+
+            <!-- Contenuto Schede (Visualizzate una alla volta) -->
+            <div id="card-content-container" class="bg-[#231215] border border-rose-900/60 rounded-xl p-6 shadow-2xl space-y-4">
+                <!-- Il contenuto viene iniettato via JS -->
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SEZIONE 2: SFIDA (ESCAPE ROOM INTERATTIVA) -->
+        <!-- ========================================== -->
+        <section id="section-sfida" class="hidden space-y-6">
+
+            <!-- SCHERMATA INIZIALE / CONFIGURAZIONE SFIDA -->
+            <div id="sfida-intro" class="bg-[#231215] border border-amber-500/40 rounded-xl p-6 md:p-8 text-center space-y-6 shadow-2xl shadow-red-950/40">
+                <div class="inline-block p-4 bg-amber-500/10 rounded-full border border-amber-500/30">
+                    <span class="text-5xl" aria-hidden="true">🔐</span>
+                </div>
+                <div class="max-w-2xl mx-auto space-y-3">
+                    <h2 class="font-serif text-2xl md:text-3xl font-extrabold text-amber-300">L'Enigma dell'Imperatore</h2>
+                    <p class="text-rose-100/90 text-base leading-relaxed">
+                        Sei un giovane funzionario dell'amministrazione imperiale. Per accedere agli archivi segreti di Roma devi risolvere <strong>10 prove storiografiche</strong> su cause, conseguenze e date chiave del Primo Secolo dell'Impero.
+                    </p>
+                </div>
+
+                <div class="bg-[#180a0c] border border-rose-900/60 rounded-lg p-4 max-w-md mx-auto text-left space-y-3">
+                    <h3 class="font-semibold text-amber-300 text-sm uppercase tracking-wider flex items-center gap-2">
+                        <span>⚙️</span> Regole della Missione
+                    </h3>
+                    <ul class="text-sm text-rose-100/80 space-y-1.5">
+                        <li class="flex items-center gap-2"><span>🎯</span> <strong>10 Prove</strong> a risposta multipla e abbinamento.</li>
+                        <li class="flex items-center gap-2"><span>🔄</span> <strong>2 Tentativi</strong> disponibili per ciascuna prova.</li>
+                        <li class="flex items-center gap-2"><span>💡</span> In caso di errore al 1° tentativo riceverai un suggerimento.</li>
+                        <li class="flex items-center gap-2"><span>📚</span> Puoi consultare la sezione <strong>Scopri</strong> in qualsiasi momento.</li>
+                    </ul>
+
+                    <!-- Switch Timer -->
+                    <div class="pt-3 border-t border-rose-900/60 flex items-center justify-between">
+                        <label for="timer-toggle" class="text-sm font-medium text-rose-100 cursor-pointer">
+                            ⏱️ Abilita Timer (20 sec per prova)
+                        </label>
+                        <input type="checkbox" id="timer-toggle" checked class="w-5 h-5 accent-amber-500 rounded cursor-pointer">
+                    </div>
+                </div>
+
+                <div>
+                    <button onclick="startChallenge()" class="px-8 py-3.5 bg-gradient-to-r from-red-800 via-rose-700 to-amber-600 hover:from-red-700 hover:to-amber-500 text-amber-100 font-extrabold text-lg rounded-xl border border-amber-400/40 shadow-lg shadow-red-950/50 hover:shadow-amber-500/20 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-amber-400">
+                        Inizia l'Escape Room
+                    </button>
+                </div>
+            </div>
+
+            <!-- SCHERMATA DELLE PROVE (ATTIVA DURANTE IL GIOCO) -->
+            <div id="sfida-game" class="hidden space-y-4">
+                
+                <!-- Header Stato Gioco (Progress, Timer, Punteggio) -->
+                <div class="bg-[#231215] border border-rose-900/60 rounded-xl p-4 flex flex-wrap justify-between items-center gap-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-sm font-semibold text-amber-300" id="challenge-counter-text">Prova 1 di 10</span>
+                        <div class="w-32 md:w-48 bg-[#160b0d] rounded-full h-3 border border-rose-900/60 overflow-hidden">
+                            <div id="progress-bar" class="bg-gradient-to-r from-rose-700 via-red-600 to-amber-400 h-full transition-all duration-300" style="width: 10%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div id="timer-box" class="flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-[#160b0d] border border-amber-500/50 text-amber-300 font-mono font-bold text-sm">
+                            <span>⏱️</span>
+                            <span id="timer-display">20s</span>
+                        </div>
+                        <div class="text-sm font-medium text-rose-200">
+                            Punti: <span id="score-display" class="font-bold text-amber-300">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scheda della Prova Attuale -->
+                <div class="bg-[#231215] border border-rose-900/60 rounded-xl p-6 shadow-2xl space-y-6">
+                    
+                    <!-- Titolo & Domanda -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-amber-300">
+                            <span id="challenge-category">Categoria</span>
+                            <span id="attempt-badge" class="px-2.5 py-0.5 rounded-full bg-rose-950/80 text-rose-200 border border-rose-800/60">Tentativo 1 di 2</span>
+                        </div>
+                        <h3 id="challenge-question" class="text-lg md:text-xl font-bold text-stone-100 leading-snug">
+                            <!-- Domanda generata da JS -->
+                        </h3>
+                    </div>
+
+                    <!-- Area Input / Opzioni della risposta -->
+                    <div id="challenge-options-container" class="space-y-3">
+                        <!-- Opzioni iniettate da JS -->
+                    </div>
+
+                    <!-- Area Feedback & Suggerimento (Inizialmente Nascosta) -->
+                    <div id="feedback-box" class="hidden p-4 rounded-xl border text-sm space-y-2 animate-fade-in">
+                        <div class="flex items-center gap-2 font-bold text-base" id="feedback-title">
+                            <!-- Icona e Stato -->
+                        </div>
+                        <p id="feedback-message" class="text-stone-100 leading-relaxed"></p>
+                        <div id="hint-reference" class="text-xs pt-2 border-t border-rose-800/40 text-amber-300 font-medium"></div>
+                    </div>
+
+                    <!-- Azioni (Pulsanti Conferma / Avanti) -->
+                    <div class="flex justify-end gap-3 pt-2">
+                        <button id="btn-submit-answer" onclick="checkAnswer()" class="px-6 py-2.5 bg-gradient-to-r from-red-800 to-rose-700 hover:from-red-700 hover:to-rose-600 text-amber-100 font-bold rounded-lg border border-amber-500/40 shadow transition-all focus:outline-none focus:ring-2 focus:ring-amber-400">
+                            Conferma Risposta
+                        </button>
+                        <button id="btn-next-challenge" onclick="nextChallenge()" class="hidden px-6 py-2.5 bg-[#3b1a1f] hover:bg-[#4d2228] text-amber-200 border border-rose-800/60 font-bold rounded-lg shadow transition-all flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                            <span>Prossima Prova</span>
+                            <span aria-hidden="true">➡️</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SCHERMATA FINALE / RISULTATI -->
+            <div id="sfida-results" class="hidden bg-[#231215] border border-amber-500/40 rounded-xl p-6 md:p-8 space-y-6 shadow-2xl">
+                <div class="text-center space-y-3">
+                    <span class="text-5xl inline-block" id="results-icon">🏆</span>
+                    <h2 class="font-serif text-2xl md:text-3xl font-extrabold text-amber-300" id="results-title">Missione Completata!</h2>
+                    <p class="text-rose-100/90 text-sm md:text-base max-w-xl mx-auto" id="results-subtitle">
+                        Ecco il resoconto analitico delle tue competenze storiografiche.
+                    </p>
+                </div>
+
+                <!-- Box Punteggio -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                    <div class="bg-[#180a0c] border border-rose-900/60 p-4 rounded-xl text-center">
+                        <span class="block text-xs uppercase text-rose-200/70 font-semibold">Punteggio Finale</span>
+                        <span class="text-3xl font-black text-amber-300" id="final-score">0 / 100</span>
+                    </div>
+                    <div class="bg-[#180a0c] border border-rose-900/60 p-4 rounded-xl text-center">
+                        <span class="block text-xs uppercase text-rose-200/70 font-semibold">Risposte Corrette</span>
+                        <span class="text-3xl font-black text-emerald-400" id="final-correct">0</span>
+                    </div>
+                    <div class="bg-[#180a0c] border border-rose-900/60 p-4 rounded-xl text-center">
+                        <span class="block text-xs uppercase text-rose-200/70 font-semibold">Errori Commessi</span>
+                        <span class="text-3xl font-black text-rose-400" id="final-errors">0</span>
+                    </div>
+                </div>
+
+                <!-- Riepilogo Errori e Spiegazioni -->
+                <div id="errors-summary-container" class="space-y-3 max-w-3xl mx-auto">
+                    <h3 class="font-semibold text-rose-100 text-base border-b border-rose-900/60 pb-2">
+                        📋 Riepilogo e Analisi degli Errori
+                    </h3>
+                    <div id="errors-list" class="space-y-3 max-h-60 overflow-y-auto custom-scrollbar pr-2">
+                        <!-- Iniettato da JS -->
+                    </div>
+                </div>
+
+                <!-- Pulsanti di Azione Finale -->
+                <div class="flex flex-wrap justify-center gap-4 pt-4 border-t border-rose-900/60">
+                    <button id="btn-review-errors" onclick="retryIncorrectChallenges()" class="hidden px-6 py-3 bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/50 font-bold rounded-xl transition-all flex items-center gap-2">
+                        <span>🔄</span>
+                        <span>Ripassa e Riprova le Domande Errate</span>
+                    </button>
+                    <button onclick="resetFullChallenge()" class="px-6 py-3 bg-[#34181c] hover:bg-[#441f25] text-amber-200 border border-rose-800/60 font-bold rounded-xl transition-all flex items-center gap-2">
+                        <span>🏛️</span>
+                        <span>Ricomincia l'Escape Room Completa</span>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER ACCESSIBILE -->
+    <footer class="bg-[#100708] border-t border-rose-900/60 text-rose-300/60 text-xs py-3 px-4 text-center">
+        <p>Laboratorio Didattico di Storia - Università / Scuola Secondaria 2° Grado (AFM) | Accessibile via Touch & Tastiera</p>
+    </footer>
+
+    <!-- SCRIPT APPLICATIVO COMPLETO -->
+    <script>
+        /* ==========================================================================
+           DATI STRUTTURATI: 5 SCHEDE DIDATTICHE (SCOPRI)
+           ========================================================================== */
+        const SCOPRI_CARDS = [
+            {
+                id: 1,
+                title: "1. Augusto e la Nascita del Principato (31 a.C. - 14 d.C.)",
+                icon: "👑",
+                content: `
+                    <div class="space-y-4 text-rose-100/90">
+                        <p class="leading-relaxed">
+                            Dopo la vittoria nella battaglia di <strong>Azio (31 a.C.)</strong> su Marco Antonio e Cleopatra, <strong>Ottaviano</strong> pose fine alle guerre civili. Nel <strong>27 a.C.</strong> mantenne formalmente le istituzioni repubblicane, ma accentrò il potere reale ricevendo dal Senato il titolo sacro di <strong>Augusto</strong>.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-[#180a0c] p-4 rounded-xl border border-rose-900/60">
+                            <div>
+                                <h4 class="font-semibold text-amber-300 text-sm mb-1">Concentrazione dei Poteri</h4>
+                                <ul class="text-xs space-y-1 text-rose-100/80">
+                                    <li>• <strong>27 a.C.:</strong> Titolo di <em>Augusto</em> e <em>Princeps senatus</em>.</li>
+                                    <li>• <strong>23 a.C.:</strong> <em>Imperium proconsolare perpetuo</em> (comando esercito) e <em>Potestà tribunizia</em> (veto e inviolabilità).</li>
+                                    <li>• <strong>12 a.C.:</strong> <em>Pontifice Massimo</em> (capo della religione).</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-300 text-sm mb-1">Propaganda e Società</h4>
+                                <ul class="text-xs space-y-1 text-rose-100/80">
+                                    <li>• <strong>Pax Augusta:</strong> Stabilità interna e pace celebrata nell'<em>Ara Pacis</em> (19-9 a.C.).</li>
+                                    <li>• <strong>Mecenatismo:</strong> Gaio Clinio Mecenate coordinò artisti (Virgilio - <em>Eneide</em>, Orazio, Livio) per promuovere l'ideologia del principe.</li>
+                                    <li>• <strong>Moralizzazione:</strong> <em>Leggi Giulie</em> sul matrimonio e ripristino del <em>mos maiorum</em>. Punito il dissenso (esilio di Ovidio).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "2. L'Amministrazione e le Riforme dell'Impero",
+                icon: "🏛️",
+                content: `
+                    <div class="space-y-4 text-rose-100/90">
+                        <p class="leading-relaxed">
+                            Per governare un territorio vastissimo, Augusto riorganizzò l'amministrazione centrale, il fisco, l'esercito e la suddivisione delle province.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="bg-[#180a0c] p-3 rounded-xl border border-rose-900/60">
+                                <h4 class="font-semibold text-amber-300 text-xs uppercase mb-1">Province Senatorie</h4>
+                                <p class="text-xs text-rose-100/80">Pacificate e prive di legioni. Rette da un <strong>proconsole</strong> nominato dal Senato. Le imposte confluivano nell'<strong>Erario</strong> pubblico.</p>
+                            </div>
+                            <div class="bg-[#180a0c] p-3 rounded-xl border border-rose-900/60">
+                                <h4 class="font-semibold text-amber-300 text-xs uppercase mb-1">Province Imperiali</h4>
+                                <p class="text-xs text-rose-100/80">Di confine o non pacificate. Rette da <strong>legati imperiali</strong> scelti dall'imperatore. Ospitavano le <strong>legioni</strong>. Le imposte andavano al <strong>Fisco imperiale</strong>.</p>
+                            </div>
+                            <div class="bg-[#180a0c] p-3 rounded-xl border border-rose-900/60">
+                                <h4 class="font-semibold text-amber-300 text-xs uppercase mb-1">Burocrazia & Fisco</h4>
+                                <p class="text-xs text-rose-100/80">Nascita dei <strong>Prefetti</strong> (Urbano, Annona, Vigili, Pretorio). Riforma monetaria (rapporto fisso d'oro/argento) e censimenti fiscali equamente ripartiti.</p>
+                            </div>
+                        </div>
+                        <div class="bg-amber-500/10 border border-amber-500/30 p-3 rounded-lg text-xs text-amber-200">
+                            <strong>Esercito e Pretoriani:</strong> L'esercito divenne permanente (28 legioni, ferma di 20 anni). Fu creata la <strong>Guardia Pretoria</strong> (9000 soldati scelti guidati dal Prefetto del Pretorio per la protezione personale del principe).
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "3. La Politica Estera sotto Augusto",
+                icon: "🗡️",
+                content: `
+                    <div class="space-y-4 text-rose-100/90">
+                        <p class="leading-relaxed">
+                            La politica estera augustea alternò la via diplomatica in Oriente a campagne militari di consolidamento in Occidente.
+                        </p>
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 font-semibold">Oriente e Parti (20 a.C.):</strong> Augusto evitò uno scontro diretto con il potente Regno dei Parti. Attraverso un accordo diplomatico ottenne la restituzione delle insegne militari romane perse da Crasso a Carre (53 a.C.).
+                            </div>
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 font-semibold">Occidente ed Alpi (26 - 9 a.C.):</strong> Sottomissione dei cantoni alpini (Salassi in Valle d'Aosta nel 25 a.C.), pacificazioni in Spagna e avanzata fino al Danubio ad opera di Tiberio e Druso.
+                            </div>
+                            <div class="bg-rose-950/60 p-3 rounded-lg border border-rose-800/70 text-rose-200">
+                                <strong class="text-rose-300 font-semibold">La Disfatta di Teutoburgo (9 d.C.):</strong> Tre legioni romane guidate da Publio Quintilio Varo furono annientate nella foresta di Teutoburgo dai Germani guidati da Arminio. Questa pesante sconfitta indusse Augusto a rinunciare alla conquista della Germania, fissando il confine sul fiume Reno.
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "4. La Dinastia Giulio-Claudia (14 d.C. - 68 d.C.)",
+                icon: "🦅",
+                content: `
+                    <div class="space-y-3 text-rose-100/90 text-xs">
+                        <p class="text-sm">Con la morte di Augusto (14 d.C.), il potere passò alla dinastia Giulio-Claudia tramite adozione.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 block mb-1">Tiberio (14 - 37 d.C.)</strong>
+                                Figlio adottivo di Augusto. Amministratore cauto ed oculato, rafforzò i confini. Aumentò l'influenza di Seiano (prefetto del pretorio) e si ritirò a Capri nel 26 d.C.
+                            </div>
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 block mb-1">Caligola (37 - 41 d.C.)</strong>
+                                Governo dispotico di stampo orientale, spese stravaganti e scontro col Senato. Fu assassinato in una congiura dei pretoriani.
+                            </div>
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 block mb-1">Claudio (41 - 54 d.C.)</strong>
+                                Scelto dai pretoriani. Riorganizzò la burocrazia statale affidandola a liberti efficienti. Conquistò la <strong>Britannia (43 d.C.)</strong> e integrò i provinciali in Senato.
+                            </div>
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 block mb-1">Nerone (54 - 68 d.C.)</strong>
+                                Inizio moderato (con Seneca), poi svolta autoritaria. Incendio di Roma (64 d.C.), persecuzione dei cristiani e <em>svalutazione della moneta</em>. Si suicidò nel 68 d.C.
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "5. L'Anno dei Quattro Imperatori e la Dinastia Flavia (69 d.C. - 96 d.C.)",
+                icon: "🏛️",
+                content: `
+                    <div class="space-y-4 text-rose-100/90 text-xs">
+                        <p class="text-sm">Nel <strong>69 d.C.</strong> la mancanza di eredi scatenò la guerra civile tra 4 generali acclamati dalle legioni (Galba, Otone, Vitellio, Vespasiano). Prevalse Vespasiano.</p>
+                        <div class="space-y-2">
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 font-semibold">Vespasiano (69 - 79 d.C.) & Lex de imperio:</strong> Promulgò la <em>Lex de imperio Vespasiani</em>, che definì per iscritto i poteri dell'imperatore come carica statale. Risanò il bilancio, avviò il Colosseo e represse la rivolta giudaica (distruzione del Tempio di Gerusalemme nel 70 d.C. ad opera del figlio Tito).
+                            </div>
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 font-semibold">Tito (79 - 81 d.C.):</strong> Definito "delizia del genere umano", affrontò con generosità la catastrofica eruzione del Vesuvio (79 d.C.) che distrusse Pompei ed Ercolano.
+                            </div>
+                            <div class="bg-[#180a0c] p-3 rounded-lg border border-rose-900/60">
+                                <strong class="text-amber-300 font-semibold">Domiziano (81 - 96 d.C.):</strong> Stile autoritario, consolidò le fortificazioni di confine (<em>limes</em> germanico). Assassinato nel 96 d.C., subì la <em>damnatio memoriae</em>. Subentrò Nerva con il Principato Adottivo.
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        /* ==========================================================================
+           DATI STRUTTURATI: 10 PROVE DELL'ESCAPE ROOM (SFIDA)
+           ========================================================================== */
+        const CHALLENGES = [
+            {
+                id: 1,
+                category: "Politica Estera & Diplomazia",
+                type: "mcq",
+                question: "In quale anno a.C. Augusto ottenne dai Parti la restituzione delle insegne romane perse a Carre, scegliendo la via diplomatica anziché la guerra?",
+                options: [
+                    { id: "A", text: "20 a.C." },
+                    { id: "B", text: "31 a.C." },
+                    { id: "C", text: "27 a.C." },
+                    { id: "D", text: "9 d.C." }
+                ],
+                correctAnswer: "A",
+                hintCardId: 3,
+                explanation: "Nel 20 a.C., attraverso negoziati diplomatici guidati da Tiberio, i Parti restituirono le insegne sottratte a Crasso nel 53 a.C., stabilizzando il confine orientale senza spargimento di sangue."
+            },
+            {
+                id: 2,
+                category: "Successione & Potere",
+                type: "mcq",
+                question: "Quale fu la CAUSA principale per cui la successione al potere passò a Tiberio nel 14 d.C., dando inizio alla dinastia Giulio-Claudia?",
+                options: [
+                    { id: "A", text: "L'esercito pretoriano scelse Tiberio con una sommossa di piazza a Roma." },
+                    { id: "B", text: "Augusto, in assenza di norme ereditarie ufficiali, lo aveva adottato nel 4 d.C. e associato ai poteri del principato (potestà tribunizia e imperium)." },
+                    { id: "C", text: "Il Senato votò una legge repubblicana che aboliva il principato e nominava Tiberio unico console a vita." },
+                    { id: "D", text: "Tiberio vinse la battaglia di Teutoburgo pretendendo il trono per meriti bellici." }
+                ],
+                correctAnswer: "B",
+                hintCardId: 4,
+                explanation: "Non esistendo una regola successoria automatica, Augusto garantì la continuità adottando Tiberio nel 4 d.C. e conferendogli l'imperium proconsolare e la potestà tribunizia."
+            },
+            {
+                id: 3,
+                category: "Riforme Amministrative (Abbinamento)",
+                type: "matching",
+                question: "Abbina ciascuna riforma augustea (CAUSA) con la sua diretta CONSEGUENZA istituzionale:",
+                pairs: [
+                    { id: 1, cause: "1. Istituzione delle Province Imperiali", correctEffect: "Stazionamento stabile delle legioni e controllo diretto tramite legati imperiali." },
+                    { id: 2, cause: "2. Creazione del Fisco Imperiale", correctEffect: "Finanziamento degli stipendi dei soldati e dei funzionari di nomina del principe." },
+                    { id: 3, cause: "3. Istituzione della Guardia Pretoria", correctEffect: "Protezione personale del principe e presidio armato dell'ordine pubblico a Roma." }
+                ],
+                hintCardId: 2,
+                explanation: "Le province imperiali di confine necessitavano delle legioni stabili; le tasse locali alimentavano il Fisco imperiale; la Guardia Pretoria garantiva la sicurezza fisica del sovrano."
+            },
+            {
+                id: 4,
+                category: "Battaglie e Confini",
+                type: "mcq",
+                question: "Nel 9 d.C. le legioni romane di Varo furono annientate a Teutoburgo. Quale fu la CONSEGUENZA politica e strategica immediata voluta da Augusto?",
+                options: [
+                    { id: "A", text: "La conquista immediata della Britannia per bilanciare le perdite." },
+                    { id: "B", text: "La rinuncia all'espansione in Germania e l'assestamento del confine imperiale lungo il fiume Reno." },
+                    { id: "C", text: "L'esilio immediato del prefetto del pretorio e l'abolizione delle legioni." },
+                    { id: "D", text: "La svalutazione della moneta d'argento per reclutare 50 nuove legioni mercenarie." }
+                ],
+                correctAnswer: "B",
+                hintCardId: 3,
+                explanation: "La sconfitta di Teutoburgo costrinse Augusto a rinunciare al progetto di sottomissione dei Germani, fissando il confine difensivo (limes) al fiume Reno."
+            },
+            {
+                id: 5,
+                category: "Economia e Moneta",
+                type: "mcq",
+                question: "Nerone, per finanziare le spese della corte e i grandi progetti edilizi (Domus Aurea), ridusse la quantità di metallo prezioso presente nelle monete. Come si definisce questa misura economica?",
+                options: [
+                    { id: "A", text: "Riforma dell'Erario e restituzione delle imposte senatoriali" },
+                    { id: "B", text: "Svalutazione monetaria (riduzione della percentuale d'oro e d'argento)" },
+                    { id: "C", text: "Istituzione del Fisco per i legati imperiali" },
+                    { id: "D", text: "Introduzione del principato per adozione" }
+                ],
+                correctAnswer: "B",
+                hintCardId: 4,
+                explanation: "La svalutazione della moneta (descritta nella Scheda 4) consistette nel ridurre la percentuale di oro e argento contenuta nelle monete imperiali, consentendo alla zecca di coniarne una quantità maggiore con la stessa quantità di metallo grezzo."
+            },
+            {
+                id: 6,
+                category: "Cronologia Imperiale",
+                type: "ordering",
+                question: "Riordina cronologicamente gli eventi storici dal più antico (1) al più recente (4):",
+                items: [
+                    { id: "evt_1", text: "Suicidio di Nerone e scoppio della crisi dell'Anno dei Quattro Imperatori", correctPos: 1 },
+                    { id: "evt_2", text: "Promulgazione della Lex de imperio Vespasiani e distruzione del Tempio di Gerusalemme", correctPos: 2 },
+                    { id: "evt_3", text: "Eruzione del Vesuvio durante il principato di Tito", correctPos: 3 },
+                    { id: "evt_4", text: "Assassinio di Domiziano e avvio del Principato Adottivo con Nerva", correctPos: 4 }
+                ],
+                hintCardId: 5,
+                explanation: "L'ordine cronologico è: 1. Fine di Nerone (68 d.C.) -> 2. Vespasiano e Gerusalemme (69-70 d.C.) -> 3. Tito e l'eruzione (79 d.C.) -> 4. Morte di Domiziano (96 d.C.)."
+            },
+            {
+                id: 7,
+                category: "Classificazione Istituzionale",
+                type: "classification",
+                question: "Associa ciascuna caratteristica alla tipologia di provincia corretta (Senatoria o Imperiali):",
+                items: [
+                    { id: "c1", text: "Governata da un Proconsole nominato dal Senato", target: "senatoria" },
+                    { id: "c2", text: "Presidiata da legioni e governata da un Legato imperiale", target: "imperiale" },
+                    { id: "c3", text: "Tributi destinati alle casse dell'Erario statale", target: "senatoria" },
+                    { id: "c4", text: "Territorio di recente conquista o di confine strategico", target: "imperiale" }
+                ],
+                hintCardId: 2,
+                explanation: "Le province senatorie erano pacificate, senza legioni e versavano all'Erario; le province imperiali erano di confine, militarizzate e collegate al Fisco dell'imperatore."
+            },
+            {
+                id: 8,
+                category: "Cultura & Propaganda",
+                type: "mcq",
+                question: "Quale fu la funzione didattico-politica principale del Mecenatismo durante il principato di Augusto?",
+                options: [
+                    { id: "A", text: "Trasformare tutti i soldati in poeti per ridurre le spese militari." },
+                    { id: "B", text: "Sostenere economicamente gli artisti affinché diffondessero il consenso, celebrassero la pax romana e i valori tradizionali." },
+                    { id: "C", text: "Raccogliere tasse private dagli scrittori per finanziare l'Erario senza coinvolgere il Senato." },
+                    { id: "D", text: "Gestire l'approvvigionamento del grano per la plebe urbana di Roma." }
+                ],
+                correctAnswer: "B",
+                hintCardId: 1,
+                explanation: "Mecenate e Augusto usarono l'arte e la letteratura (come l'Eneide di Virgilio) come efficaci strumenti di propaganda ideologica per legittimare la nuova era di pace."
+            },
+            {
+                id: 9,
+                category: "Date Fondative",
+                type: "mcq",
+                question: "In quale anno a.C. il Senato conferì ad Ottaviano il titolo onorifico di 'Augusto' ('venerabile'), segnando l'avvio formale dell'Età Imperiale?",
+                options: [
+                    { id: "A", text: "31 a.C." },
+                    { id: "B", text: "27 a.C." },
+                    { id: "C", text: "12 a.C." },
+                    { id: "D", text: "14 d.C." }
+                ],
+                correctAnswer: "B",
+                hintCardId: 1,
+                explanation: "Nel 27 a.C. Ottaviano restituì solo apparentemente la res publica al Senato, ricevendo in cambio il titolo di Augusto che sancì il suo primato d'autorità."
+            },
+            {
+                id: 10,
+                category: "Diritto & Istituzioni Imperiali",
+                type: "mcq",
+                question: "Perché la 'Lex de imperio Vespasiani' (69-70 d.C.) rappresentò una svolta fondamentale nella storia romana?",
+                options: [
+                    { id: "A", text: "Ripristinò l'elezione dei consoli da parte dei comizi popolari repubblicani." },
+                    { id: "B", text: "Definì per iscritto e ufficializzò i poteri dell'imperatore come un'istituzione pubblica dello Stato e non più come carisma personale." },
+                    { id: "C", text: "Concesse la cittadinanza a tutti i Germani dopo la battaglia di Teutoburgo." },
+                    { id: "D", text: "Vietò la costruzione di monumenti pubblici a Roma escluso il Colosseo." }
+                ],
+                correctAnswer: "B",
+                hintCardId: 5,
+                explanation: "Con la Lex de imperio Vespasiani il principato superò la fase di un'autorità basata esclusivamente sul carisma del singolo, trasformandosi in una vera carica istituzionale regolata dalla legge."
+            }
+        ];
+
+        /* ==========================================================================
+           STATO DELL'APPLICAZIONE (APPLICATION STATE)
+           ========================================================================== */
+        let state = {
+            currentSection: 'scopri', // 'scopri' | 'sfida'
+            activeCardId: 1,
+            timerEnabled: true,
+            timerSeconds: 20,
+            timerInterval: null,
+            
+            // Stato della Sfida
+            currentChallengeIdx: 0,
+            currentAttempt: 1, // 1 o 2
+            score: 0,
+            userAnswers: [], // { challengeId, isCorrect, attemptsUsed, userAnswerText }
+            
+            // Modalità Ripasso
+            isRetryMode: false,
+            retryIndices: []
+        };
+
+        /* ==========================================================================
+           LOGICA INTERFACCIA E NAVIGAZIONE
+           ========================================================================== */
+        window.onload = function() {
+            renderScopriCard(1);
+        };
+
+        function switchSection(section) {
+            state.currentSection = section;
+            const secScopri = document.getElementById('section-scopri');
+            const secSfida = document.getElementById('section-sfida');
+            const btnScopri = document.getElementById('btn-mode-scopri');
+            const btnSfida = document.getElementById('btn-mode-sfida');
+
+            if (section === 'scopri') {
+                secScopri.classList.remove('hidden');
+                secSfida.classList.add('hidden');
+
+                btnScopri.className = "px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition-all bg-amber-500/20 text-amber-200 border border-amber-500/50 hover:bg-amber-500/30 focus:outline-none focus:ring-2 focus:ring-amber-400";
+                btnSfida.className = "px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition-all bg-[#34181c] text-rose-200 border border-rose-900/60 hover:bg-[#441f25] focus:outline-none focus:ring-2 focus:ring-amber-400";
+            } else {
+                secScopri.classList.add('hidden');
+                secSfida.classList.remove('hidden');
+
+                btnSfida.className = "px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition-all bg-amber-500/20 text-amber-200 border border-amber-500/50 hover:bg-amber-500/30 focus:outline-none focus:ring-2 focus:ring-amber-400";
+                btnScopri.className = "px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 transition-all bg-[#34181c] text-rose-200 border border-rose-900/60 hover:bg-[#441f25] focus:outline-none focus:ring-2 focus:ring-amber-400";
+            }
+        }
+
+        /* --- SEZIONE SCOPRI --- */
+        function selectCard(cardId) {
+            state.activeCardId = cardId;
+            // Aggiorna stile tab
+            for (let i = 1; i <= 5; i++) {
+                const tabBtn = document.getElementById(`tab-btn-${i}`);
+                if (i === cardId) {
+                    tabBtn.className = "card-tab-btn flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-bold bg-gradient-to-r from-red-800 to-rose-700 text-amber-100 border border-amber-400/40 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-amber-400";
+                } else {
+                    tabBtn.className = "card-tab-btn flex-shrink-0 px-4 py-2.5 rounded-lg text-sm font-semibold bg-[#2d161a] text-rose-200/90 hover:bg-[#3d1e23] transition-all border border-rose-900/50 focus:outline-none focus:ring-2 focus:ring-amber-400";
+                }
+            }
+            renderScopriCard(cardId);
+        }
+
+        function renderScopriCard(cardId) {
+            const container = document.getElementById('card-content-container');
+            const cardData = SCOPRI_CARDS.find(c => c.id === cardId);
+            if (!cardData) return;
+
+            container.innerHTML = `
+                <div class="flex items-center gap-3 border-b border-rose-900/60 pb-3">
+                    <span class="text-3xl" aria-hidden="true">${cardData.icon}</span>
+                    <h3 class="font-serif text-lg md:text-xl font-bold text-amber-300">${cardData.title}</h3>
+                </div>
+                ${cardData.content}
+            `;
+        }
+
+        /* ==========================================================================
+           LOGICA GAMEPLAY ESCAPE ROOM (SFIDA)
+           ========================================================================== */
+        function startChallenge() {
+            const timerToggle = document.getElementById('timer-toggle');
+            state.timerEnabled = timerToggle ? timerToggle.checked : true;
+            
+            state.currentChallengeIdx = 0;
+            state.score = 0;
+            state.userAnswers = [];
+            state.isRetryMode = false;
+            state.retryIndices = [];
+
+            document.getElementById('sfida-intro').classList.add('hidden');
+            document.getElementById('sfida-results').classList.add('hidden');
+            document.getElementById('sfida-game').classList.remove('hidden');
+
+            loadChallenge(0);
+        }
+
+        function loadChallenge(index) {
+            clearInterval(state.timerInterval);
+            state.currentAttempt = 1;
+            selectedMcqId = null;
+
+            const challenge = CHALLENGES[index];
+            const total = state.isRetryMode ? state.retryIndices.length : CHALLENGES.length;
+            const currentDisplayNum = state.isRetryMode ? (index + 1) : (index + 1);
+
+            // Progress Bar & Counter
+            document.getElementById('challenge-counter-text').innerText = `Prova ${currentDisplayNum} di ${total}`;
+            const progressPercent = Math.round((currentDisplayNum / total) * 100);
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('score-display').innerText = state.score;
+
+            // Timer
+            const timerBox = document.getElementById('timer-box');
+            if (state.timerEnabled) {
+                timerBox.classList.remove('hidden');
+                state.timerSeconds = 20;
+                document.getElementById('timer-display').innerText = `${state.timerSeconds}s`;
+                state.timerInterval = setInterval(updateTimer, 1000);
+            } else {
+                timerBox.classList.add('hidden');
+            }
+
+            // Info Quesito
+            document.getElementById('challenge-category').innerText = challenge.category;
+            document.getElementById('attempt-badge').innerText = `Tentativo 1 di 2`;
+            document.getElementById('attempt-badge').className = "px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30";
+            document.getElementById('challenge-question').innerText = challenge.question;
+
+            // Reset Feedback Box
+            const feedbackBox = document.getElementById('feedback-box');
+            feedbackBox.classList.add('hidden');
+            feedbackBox.className = "hidden p-4 rounded-xl border text-sm space-y-2 animate-fade-in";
+
+            // Reset Pulsanti
+            document.getElementById('btn-submit-answer').classList.remove('hidden');
+            document.getElementById('btn-next-challenge').classList.add('hidden');
+
+            // Render Opzioni in base al Tipo
+            renderOptions(challenge);
+        }
+
+        function updateTimer() {
+            state.timerSeconds--;
+            document.getElementById('timer-display').innerText = `${state.timerSeconds}s`;
+
+            if (state.timerSeconds <= 0) {
+                clearInterval(state.timerInterval);
+                handleTimeOut();
+            }
+        }
+
+        function handleTimeOut() {
+            const feedbackBox = document.getElementById('feedback-box');
+            const title = document.getElementById('feedback-title');
+            const msg = document.getElementById('feedback-message');
+            const hintRef = document.getElementById('hint-reference');
+
+            feedbackBox.classList.remove('hidden');
+            feedbackBox.className = "p-4 rounded-xl border border-rose-800 bg-rose-950/60 text-sm space-y-2";
+            title.innerHTML = `<span class="text-rose-400">⏱️ Tempo Scaduto!</span>`;
+
+            const challenge = CHALLENGES[state.currentChallengeIdx];
+
+            if (state.currentAttempt === 1) {
+                state.currentAttempt = 2;
+                document.getElementById('attempt-badge').innerText = `Tentativo 2 di 2`;
+                document.getElementById('attempt-badge').className = "px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30";
+                
+                msg.innerText = "Il tempo a disposizione per il primo tentativo è terminato. Hai ancora un tentativo!";
+                hintRef.innerText = `💡 Suggerimento: Consulta la Scheda ${challenge.hintCardId} nella sezione "Scopri".`;
+            } else {
+                msg.innerText = `Tempo scaduto anche per il secondo tentativo. ${challenge.explanation}`;
+                hintRef.innerText = "";
+                document.getElementById('btn-submit-answer').classList.add('hidden');
+                document.getElementById('btn-next-challenge').classList.remove('hidden');
+
+                recordAnswer(false, 2, "Tempo Scaduto");
+            }
+        }
+
+        /* --- RENDER DEI DIVERSI TIPI DI QUESITO --- */
+        function renderOptions(challenge) {
+            const container = document.getElementById('challenge-options-container');
+            container.innerHTML = "";
+
+            if (challenge.type === 'mcq') {
+                challenge.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = "mcq-opt-btn w-full text-left p-3.5 rounded-xl border border-rose-900/60 bg-[#180a0c] hover:bg-[#281316] focus:bg-[#281316] focus:border-amber-400 transition-all flex items-start gap-3 focus:outline-none focus:ring-2 focus:ring-amber-400";
+                    btn.setAttribute('data-id', opt.id);
+                    btn.onclick = () => selectMcqOption(opt.id);
+                    btn.innerHTML = `
+                        <span class="font-bold text-amber-300 bg-[#2d161a] px-2.5 py-1 rounded-md text-xs border border-rose-900/60">${opt.id}</span>
+                        <span class="text-sm text-rose-100 leading-snug flex-1">${opt.text}</span>
+                    `;
+                    container.appendChild(btn);
+                });
+            } else if (challenge.type === 'matching') {
+                let html = `<div class="space-y-3">`;
+                challenge.pairs.forEach(pair => {
+                    html += `
+                        <div class="bg-[#180a0c] p-3 rounded-xl border border-rose-900/60 flex flex-wrap md:flex-nowrap items-center justify-between gap-3">
+                            <span class="text-xs font-semibold text-amber-300 w-full md:w-1/2">${pair.cause}</span>
+                            <select id="match-select-${pair.id}" class="w-full md:w-1/2 p-2 bg-[#231215] border border-rose-900/60 rounded-lg text-xs text-rose-100 focus:outline-none focus:border-amber-400">
+                                <option value="">-- Seleziona la Conseguenza --</option>
+                                <option value="A">A. ${challenge.pairs[0].correctEffect}</option>
+                                <option value="B">B. ${challenge.pairs[1].correctEffect}</option>
+                                <option value="C">C. ${challenge.pairs[2].correctEffect}</option>
+                            </select>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
+            } else if (challenge.type === 'ordering') {
+                let html = `<div class="space-y-2 text-xs">`;
+                challenge.items.forEach(item => {
+                    html += `
+                        <div class="bg-[#180a0c] p-3 rounded-xl border border-rose-900/60 flex items-center justify-between gap-3">
+                            <span class="text-rose-100 flex-1">${item.text}</span>
+                            <select id="order-select-${item.id}" class="p-2 bg-[#231215] border border-rose-900/60 rounded-lg text-amber-300 font-bold focus:outline-none focus:border-amber-400">
+                                <option value="">Posizione</option>
+                                <option value="1">1° posto (Più antico)</option>
+                                <option value="2">2° posto</option>
+                                <option value="3">3° posto</option>
+                                <option value="4">4° posto (Più recente)</option>
+                            </select>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
+            } else if (challenge.type === 'classification') {
+                let html = `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
+                challenge.items.forEach(item => {
+                    html += `
+                        <div class="bg-[#180a0c] p-3 rounded-xl border border-rose-900/60 space-y-2">
+                            <p class="text-xs font-medium text-rose-100">${item.text}</p>
+                            <select id="class-select-${item.id}" class="w-full p-2 bg-[#231215] border border-rose-900/60 rounded-lg text-xs text-amber-300 font-semibold focus:outline-none focus:border-amber-400">
+                                <option value="">-- Seleziona Tipologia --</option>
+                                <option value="senatoria">🏛️ Provincia Senatoria</option>
+                                <option value="imperiale">🛡️ Provincia Imperiali</option>
+                            </select>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
+            }
+        }
+
+        let selectedMcqId = null;
+        function selectMcqOption(optId) {
+            selectedMcqId = optId;
+            document.querySelectorAll('.mcq-opt-btn').forEach(btn => {
+                if (btn.getAttribute('data-id') === optId) {
+                    btn.className = "mcq-opt-btn w-full text-left p-3.5 rounded-xl border-2 border-amber-400 bg-amber-500/15 transition-all flex items-start gap-3 focus:outline-none";
+                } else {
+                    btn.className = "mcq-opt-btn w-full text-left p-3.5 rounded-xl border border-rose-900/60 bg-[#180a0c] hover:bg-[#281316] transition-all flex items-start gap-3 focus:outline-none focus:ring-2 focus:ring-amber-400";
+                }
+            });
+        }
+
+        /* --- VERIFICA DELLA RISPOSTA --- */
+        function checkAnswer() {
+            const challenge = CHALLENGES[state.currentChallengeIdx];
+            let isCorrect = false;
+            let userValText = "";
+
+            if (challenge.type === 'mcq') {
+                if (!selectedMcqId) {
+                    showInlineWarning("Per favore seleziona un'opzione prima di confermare.");
+                    return;
+                }
+                isCorrect = (selectedMcqId === challenge.correctAnswer);
+                userValText = selectedMcqId;
+            } else if (challenge.type === 'input_number' || challenge.type === 'input_text') {
+                const inputEl = document.getElementById('user-text-input');
+                const val = inputEl ? inputEl.value.trim().toLowerCase() : "";
+                if (!val) {
+                    showInlineWarning("Inserisci una risposta nell'apposito campo.");
+                    return;
+                }
+                userValText = val;
+                isCorrect = challenge.acceptedAnswers.some(ans => ans.toLowerCase() === val);
+            } else if (challenge.type === 'matching') {
+                const s1 = document.getElementById('match-select-1').value;
+                const s2 = document.getElementById('match-select-2').value;
+                const s3 = document.getElementById('match-select-3').value;
+
+                if (!s1 || !s2 || !s3) {
+                    showInlineWarning("Abbina tutte e 3 le riforme prima di continuare.");
+                    return;
+                }
+                // Risposte corrette: 1->A, 2->B, 3->C
+                isCorrect = (s1 === 'A' && s2 === 'B' && s3 === 'C');
+                userValText = `1-${s1}, 2-${s2}, 3-${s3}`;
+            } else if (challenge.type === 'ordering') {
+                const p1 = document.getElementById('order-select-evt_1').value;
+                const p2 = document.getElementById('order-select-evt_2').value;
+                const p3 = document.getElementById('order-select-evt_3').value;
+                const p4 = document.getElementById('order-select-evt_4').value;
+
+                if (!p1 || !p2 || !p3 || !p4) {
+                    showInlineWarning("Assegna una posizione in graduatoria a tutti i 4 eventi.");
+                    return;
+                }
+                isCorrect = (p1 === "1" && p2 === "2" && p3 === "3" && p4 === "4");
+                userValText = `Ord: ${p1}, ${p2}, ${p3}, ${p4}`;
+            } else if (challenge.type === 'classification') {
+                const c1 = document.getElementById('class-select-c1').value;
+                const c2 = document.getElementById('class-select-c2').value;
+                const c3 = document.getElementById('class-select-c3').value;
+                const c4 = document.getElementById('class-select-c4').value;
+
+                if (!c1 || !c2 || !c3 || !c4) {
+                    showInlineWarning("Classifica tutti e 4 gli elementi proposti.");
+                    return;
+                }
+                isCorrect = (c1 === 'senatoria' && c2 === 'imperiale' && c3 === 'senatoria' && c4 === 'imperiale');
+                userValText = `Class: ${c1}, ${c2}, ${c3}, ${c4}`;
+            }
+
+            // Ferma timer se attivo
+            if (state.timerEnabled) clearInterval(state.timerInterval);
+
+            // GESTIONE ESITO
+            const feedbackBox = document.getElementById('feedback-box');
+            const title = document.getElementById('feedback-title');
+            const msg = document.getElementById('feedback-message');
+            const hintRef = document.getElementById('hint-reference');
+
+            feedbackBox.classList.remove('hidden');
+
+            if (isCorrect) {
+                // CORRETTO
+                feedbackBox.className = "p-4 rounded-xl border border-emerald-800 bg-emerald-950/60 text-sm space-y-2";
+                title.innerHTML = `<span class="text-emerald-400">✓ Risposta Corretta!</span>`;
+                msg.innerText = challenge.explanation;
+                hintRef.innerText = "";
+
+                // Calcolo Punteggio (10 pti se al 1° tentativo, 5 pti al 2°)
+                const pointsGained = state.currentAttempt === 1 ? 10 : 5;
+                state.score += pointsGained;
+                document.getElementById('score-display').innerText = state.score;
+
+                document.getElementById('btn-submit-answer').classList.add('hidden');
+                document.getElementById('btn-next-challenge').classList.remove('hidden');
+
+                recordAnswer(true, state.currentAttempt, userValText);
+            } else {
+                // ERRATO
+                if (state.currentAttempt === 1) {
+                    // Primo Errore -> Mostra Suggerimento e passa al 2° tentativo
+                    state.currentAttempt = 2;
+                    document.getElementById('attempt-badge').innerText = `Tentativo 2 di 2`;
+                    document.getElementById('attempt-badge').className = "px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30";
+
+                    feedbackBox.className = "p-4 rounded-xl border border-amber-700/60 bg-amber-950/40 text-sm space-y-2";
+                    title.innerHTML = `<span class="text-amber-400">✗ Risposta Non Corretta (1° Tentativo)</span>`;
+                    msg.innerText = "La scelta non è esatta. Rileggi bene la domanda e il suggerimento sottostante prima di riprovare!";
+                    hintRef.innerText = `💡 Suggerimento: Puoi trovare l'informazione corretta consultando la Scheda ${challenge.hintCardId} nella sezione "Scopri".`;
+
+                    // Riavvia timer per il 2° tentativo se abilitato
+                    if (state.timerEnabled) {
+                        state.timerSeconds = 20;
+                        document.getElementById('timer-display').innerText = `${state.timerSeconds}s`;
+                        state.timerInterval = setInterval(updateTimer, 1000);
+                    }
+                } else {
+                    // Secondo Errore -> Mostra spiegazione completa e passa oltre
+                    feedbackBox.className = "p-4 rounded-xl border border-rose-800 bg-rose-950/60 text-sm space-y-2";
+                    title.innerHTML = `<span class="text-rose-400">✗ Risposta Errata (Tentativi Esauriti)</span>`;
+                    msg.innerText = challenge.explanation;
+                    hintRef.innerText = "";
+
+                    document.getElementById('btn-submit-answer').classList.add('hidden');
+                    document.getElementById('btn-next-challenge').classList.remove('hidden');
+
+                    recordAnswer(false, 2, userValText);
+                }
+            }
+        }
+
+        function showInlineWarning(text) {
+            const feedbackBox = document.getElementById('feedback-box');
+            feedbackBox.classList.remove('hidden');
+            feedbackBox.className = "p-3 rounded-lg border border-amber-500/50 bg-amber-950/30 text-amber-200 text-xs font-semibold";
+            document.getElementById('feedback-title').innerHTML = "⚠️ Attenzione";
+            document.getElementById('feedback-message').innerText = text;
+            document.getElementById('hint-reference').innerText = "";
+        }
+
+        function recordAnswer(isCorrect, attemptsUsed, userAnswerText) {
+            const challenge = CHALLENGES[state.currentChallengeIdx];
+            // Evita duplicati se il quesito era già stato registrato
+            const existingIdx = state.userAnswers.findIndex(a => a.challengeId === challenge.id);
+            const record = {
+                challengeId: challenge.id,
+                category: challenge.category,
+                question: challenge.question,
+                isCorrect: isCorrect,
+                attemptsUsed: attemptsUsed,
+                explanation: challenge.explanation,
+                hintCardId: challenge.hintCardId,
+                userAnswerText: userAnswerText
+            };
+
+            if (existingIdx >= 0) {
+                state.userAnswers[existingIdx] = record;
+            } else {
+                state.userAnswers.push(record);
+            }
+        }
+
+        function nextChallenge() {
+            selectedMcqId = null;
+            if (state.isRetryMode) {
+                // Modalità Ripasso
+                const currentRetryPos = state.retryIndices.indexOf(state.currentChallengeIdx);
+                if (currentRetryPos < state.retryIndices.length - 1) {
+                    state.currentChallengeIdx = state.retryIndices[currentRetryPos + 1];
+                    loadChallenge(state.currentChallengeIdx);
+                } else {
+                    showFinalResults();
+                }
+            } else {
+                // Modalità Standard
+                if (state.currentChallengeIdx < CHALLENGES.length - 1) {
+                    state.currentChallengeIdx++;
+                    loadChallenge(state.currentChallengeIdx);
+                } else {
+                    showFinalResults();
+                }
+            }
+        }
+
+        /* --- SCHERMATA RISULTATI FINALI --- */
+        function showFinalResults() {
+            clearInterval(state.timerInterval);
+            document.getElementById('sfida-game').classList.add('hidden');
+            document.getElementById('sfida-results').classList.remove('hidden');
+
+            const correctAnswersCount = state.userAnswers.filter(a => a.isCorrect).length;
+            const errorAnswersCount = state.userAnswers.length - correctAnswersCount;
+
+            document.getElementById('final-score').innerText = `${state.score} / 100`;
+            document.getElementById('final-correct').innerText = `${correctAnswersCount} / 10`;
+            document.getElementById('final-errors').innerText = errorAnswersCount;
+
+            const iconEl = document.getElementById('results-icon');
+            const titleEl = document.getElementById('results-title');
+            const subTitleEl = document.getElementById('results-subtitle');
+
+            if (correctAnswersCount >= 8) {
+                iconEl.innerText = "🏆";
+                titleEl.innerText = "Eccellente Archiviatore Imperiale!";
+                subTitleEl.innerText = "Hai dimostrato una spiccata capacità di collegare cause, conseguenze e date storiche della Roma Augustea ed Imperiale.";
+            } else if (correctAnswersCount >= 5) {
+                iconEl.innerText = "📜";
+                titleEl.innerText = "Buon Lavoro!";
+                subTitleEl.innerText = "Hai superato la sfida, ma alcuni passaggi su riforme e successioni meritano un breve ripasso.";
+            } else {
+                iconEl.innerText = "⚔️";
+                titleEl.innerText = "La Missione ha Richiesto Più Studio!";
+                subTitleEl.innerText = "Hai riscontrato difficoltà nel correlare eventi e cause storiche. Consulta le schede didattiche e riprova!";
+            }
+
+            // Generazione Elenco Analitico degli Errori
+            const errorsListContainer = document.getElementById('errors-list');
+            const reviewBtn = document.getElementById('btn-review-errors');
+            errorsListContainer.innerHTML = "";
+
+            const incorrectList = state.userAnswers.filter(a => !a.isCorrect);
+
+            if (incorrectList.length === 0) {
+                errorsListContainer.innerHTML = `
+                    <div class="p-4 bg-emerald-950/40 border border-emerald-800 rounded-xl text-emerald-300 text-sm font-semibold text-center">
+                        ✓ Congratulazioni! Non hai commesso alcun errore finale. Hai dominato l'analisi storiografica.
+                    </div>
+                `;
+                reviewBtn.classList.add('hidden');
+            } else {
+                reviewBtn.classList.remove('hidden');
+                incorrectList.forEach(err => {
+                    const item = document.createElement('div');
+                    item.className = "p-3.5 bg-slate-950 border border-rose-900/60 rounded-xl text-xs space-y-1.5";
+                    item.innerHTML = `
+                        <div class="flex items-center justify-between font-bold text-rose-400">
+                            <span>📌 ${err.category}</span>
+                            <span class="text-amber-300">Rivedi Scheda ${err.hintCardId}</span>
+                        </div>
+                        <p class="text-slate-200 font-medium">${err.question}</p>
+                        <p class="text-slate-400 leading-relaxed"><strong>Spiegazione:</strong> ${err.explanation}</p>
+                    `;
+                    errorsListContainer.appendChild(item);
+                });
+            }
+        }
+
+        function retryIncorrectChallenges() {
+            const incorrectIds = state.userAnswers.filter(a => !a.isCorrect).map(a => a.challengeId);
+            state.retryIndices = CHALLENGES.map((c, idx) => incorrectIds.includes(c.id) ? idx : -1).filter(idx => idx !== -1);
+            
+            if (state.retryIndices.length === 0) return;
+
+            state.isRetryMode = true;
+            state.currentChallengeIdx = state.retryIndices[0];
+            
+            document.getElementById('sfida-results').classList.add('hidden');
+            document.getElementById('sfida-game').classList.remove('hidden');
+            
+            loadChallenge(state.currentChallengeIdx);
+        }
+
+        function resetFullChallenge() {
+            document.getElementById('sfida-results').classList.add('hidden');
+            document.getElementById('sfida-game').classList.add('hidden');
+            document.getElementById('sfida-intro').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
